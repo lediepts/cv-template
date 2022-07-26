@@ -3,6 +3,7 @@ $bg-main: #69008d;
 $bg-light: #ff00a8;
 $bg-dark: #4e0050;
 $text-color: #fff;
+$timeShowHidden: 800ms;
 
 @mixin keyframes($name) {
   @-webkit-keyframes #{$name} {

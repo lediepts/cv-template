@@ -1,0 +1,231 @@
+@use "sass:math";
+$ball-color: rgba(0, 247, 255, 0.1);
+$ball-size: 4rem;
+
+#profile {
+  position: fixed;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 50rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 1.5rem 2.5rem rgba($color: #000000, $alpha: 0.1);
+  padding: 2rem 1rem 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: showProfile ease-in-out $timeShowHidden;
+  &.hidden {
+    animation: hiddenProfile ease-in-out $timeShowHidden forwards;
+  }
+  .avatar {
+    width: 15rem;
+    height: 15rem;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .name {
+    font-size: xx-large;
+    font-weight: bold;
+  }
+  .vocation {
+    font-size: large;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-style: italic;
+    margin: 1rem auto 2rem;
+    span {
+      &:first {
+        font-weight: bold;
+      }
+      &:last-child {
+        font-size: medium;
+      }
+    }
+  }
+  .social {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    a {
+      color: #ddd;
+      width: 5rem;
+      height: 5rem;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      box-shadow: 0 0.5rem 1rem rgba(255, 255, 255, 0.05);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 100ms;
+      font-size: xx-large;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.2);
+        i {
+          filter: drop-shadow(0 0 0px #ff9100)
+            drop-shadow(0 0 20px rgba(255, 255, 255, 0.5))
+            drop-shadow(0 0 50px rgba(255, 255, 255, 0.5));
+          transition: all 200ms;
+        }
+        &.facebook {
+          color: #0f91f3;
+        }
+        &.twitter {
+          color: #1d9bf0;
+        }
+        &.github {
+          color: #111;
+        }
+        &.linkedin {
+          color: #0a66c2;
+        }
+      }
+      &.facebook {
+      }
+      &.twitter {
+      }
+      &.github {
+      }
+      &.linkedin {
+      }
+    }
+  }
+  .action {
+    margin-top: 3rem;
+    button {
+      background: #6610f2;
+      padding: 0.4rem 1rem;
+      border-radius: 0.5rem;
+      font-weight: bold;
+    }
+  }
+
+  .loader {
+    position: absolute;
+    z-index: -1;
+    width: 30rem;
+    height: 30rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    span {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 10%;
+      height: 10%;
+      transform: translate(-50%, -50%) rotate(calc(36deg * var(--i)));
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: $ball-size;
+        height: $ball-size;
+        background: transparent;
+        border: math.div($ball-size, 10) solid $ball-color;
+        border-radius: 50%;
+        animation: animate 8s linear infinite;
+        animation-delay: calc(-0.25s * var(--i));
+        transition: all 1s;
+        opacity: 0;
+      }
+    }
+  }
+  &:hover {
+    .loader {
+      span {
+        width: 100%;
+        height: 100%;
+        &::before {
+          opacity: 1;
+          box-shadow: 0 0 calc(0.8 * $ball-size) $ball-color,
+            calc(-4 * $ball-size) calc(-4 * $ball-size) 0 $ball-color,
+            calc(-4 * $ball-size) calc(-4 * $ball-size) calc(0.8 * $ball-size)
+              $ball-color,
+            calc(-2 * $ball-size) calc(-4 * $ball-size) 0 $ball-color,
+            calc(-2 * $ball-size) calc(-4 * $ball-size) calc(0.8 * $ball-size)
+              $ball-color,
+            calc(-4 * $ball-size) calc(-2 * $ball-size) 0 $ball-color,
+            calc(-4 * $ball-size) calc(-2 * $ball-size) calc(0.8 * $ball-size)
+              $ball-color,
+            calc(4 * $ball-size) calc(-4 * $ball-size) 0 $ball-color,
+            calc(4 * $ball-size) calc(-4 * $ball-size) calc(0.8 * $ball-size)
+              $ball-color,
+            calc(-4 * $ball-size) calc(4 * $ball-size) 0 $ball-color,
+            calc(-4 * $ball-size) calc(4 * $ball-size) calc(0.8 * $ball-size)
+              $ball-color,
+            calc(-4 * $ball-size) calc(2 * $ball-size) 0 $ball-color,
+            calc(-4 * $ball-size) calc(2 * $ball-size) calc(0.8 * $ball-size)
+              $ball-color,
+            calc(-2 * $ball-size) calc(4 * $ball-size) 0 $ball-color,
+            calc(-2 * $ball-size) calc(4 * $ball-size) calc(0.8 * $ball-size)
+              $ball-color,
+            calc(4 * $ball-size) calc(4 * $ball-size) 0 $ball-color,
+            calc(4 * $ball-size) calc(4 * $ball-size) calc(0.8 * $ball-size)
+              $ball-color,
+            calc(4 * $ball-size) calc(4 * $ball-size) 0 $ball-color,
+            calc(4 * $ball-size) calc(4 * $ball-size) calc(0.8 * $ball-size)
+              $ball-color,
+            calc(2 * $ball-size) calc(4 * $ball-size) 0 $ball-color,
+            calc(2 * $ball-size) calc(4 * $ball-size) calc(0.8 * $ball-size)
+              $ball-color,
+            calc(4 * $ball-size) calc(2 * $ball-size) 0 $ball-color,
+            calc(4 * $ball-size) calc(2 * $ball-size) calc(0.8 * $ball-size)
+              $ball-color;
+        }
+      }
+    }
+  }
+}
+@include keyframes(showProfile) {
+  0% {
+    top: 0;
+    left: calc(50vw - 25rem);
+    opacity: 0;
+    transform: scale(0) translateY(-50%);
+  }
+  100% {
+    left: calc(50vw - 25rem);
+    opacity: 1;
+    transform: scale(1) translateY(-50%);
+  }
+}
+@include keyframes(hiddenProfile) {
+  0% {
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotateY(80deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotateY(90deg);
+    opacity: 0;
+  }
+}
+@include keyframes(animate) {
+  0% {
+    transform: rotate(0deg);
+    filter: hue-rotate(0deg);
+    transform-origin: 14 * $ball-size;
+  }
+  100% {
+    transform: rotate(360deg);
+    filter: hue-rotate(360deg);
+    transform-origin: 10 * $ball-size;
+  }
+}

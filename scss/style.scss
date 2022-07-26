@@ -3,6 +3,8 @@
 @import "header";
 @import "main";
 @import "footer";
+@import "profile";
+@import "cv";
 
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap");
 
@@ -19,6 +21,10 @@ body {
   font-size: 1.6rem;
   background: linear-gradient(-120deg, #6610f2, #252525);
   color: $text-color;
+  min-height: 100vh;
+}
+img {
+  max-width: 100%;
 }
 
 .container {
