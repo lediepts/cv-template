@@ -1,0 +1,70 @@
+@import "const";
+@import "reset";
+@import "header";
+@import "main";
+@import "footer";
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap");
+
+* {
+  scroll-behavior: smooth;
+  @extend %scrollbar;
+}
+html {
+  font-size: $fontSize;
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 300;
+}
+body {
+  font-size: 1.6rem;
+  background: linear-gradient(-120deg, #6610f2, #252525);
+  color: $text-color;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  @include Mobile {
+    max-width: 760px;
+    padding: 0 0.4rem;
+  }
+}
+
+.back-to-top {
+  --offset: 50px;
+  position: sticky;
+  z-index: 9999;
+  bottom: 20px;
+  margin-right: 20px;
+  place-self: end;
+  margin-top: calc(100vh + var(--offset));
+  background-color: $bg-light;
+  display: flex;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 0.5rem;
+  border: 0px solid white;
+  cursor: pointer;
+  box-shadow: 0 0 1rem rgba($color: #fff, $alpha: 0.1),
+    0 0 5rem rgba($color: #fff, $alpha: 0.3),
+    0 0 1rem rgba($color: #000000, $alpha: 0.1),
+    0 0 2rem rgba($color: #000000, $alpha: 0.2),
+    0 0 5rem rgba($color: #000000, $alpha: 0.3);
+
+  &::before {
+    content: "";
+    @include arrow(up, 0.8rem, white);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+  }
+  @include Mobile {
+    bottom: 60px;
+    width: 4.5rem;
+    height: 4.5rem;
+    &::before {
+      @include arrow(up, 0.6rem, white);
+    }
+  }
+}
